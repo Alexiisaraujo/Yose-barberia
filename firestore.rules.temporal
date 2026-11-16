@@ -1,0 +1,5 @@
+// SOLO MIENTRAS ADMIN_OPEN=true. Cualquiera puede escribir en "site". Cambiar a firestore.rules antes de publicar de verdad.
+rules_version='2';
+service cloud.firestore{match /databases/{d}/documents{
+ match /site/{doc}{allow read,write:if true;}
+}}
