@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yose Barber | Barbeiro a domicílio em Curitiba</title>
+<meta name="description" content="Barbearia profissional a domicílio em Curitiba. Seu estilo, no conforto da sua casa.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23080808'/><path d='M20 70l-6-34 20 16 16-26 16 26 20-16-6 34z' fill='%23D6A64B'/></svg>">
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@600;700;800&family=Playfair+Display:wght@600;700;800&family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@500;600;700&family=Raleway:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080808;--bg2:color-mix(in srgb,var(--bg),#fff 5%);--himg:url("https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1600&q=75");--card:#171717;--surf:color-mix(in srgb,var(--card),#fff 6%);--gold:#D6A64B;--gold2:#F1C875;--gold3:color-mix(in srgb,var(--gold),#000 32%);--txt:#F5F5F5;--mut:#A5A5A5;--bd:color-mix(in srgb,var(--card),#fff 14%);--r:16px}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font:400 calc(16px*var(--fs,1))/1.65 Inter,sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+h1,h2,h3,.logo{font-family:Montserrat,sans-serif}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--w,1180px);margin:auto;padding:0 22px}
+section{padding:var(--sp,84px) 0}.alt{background:var(--bg2)}
+.eyebrow{color:var(--gold);letter-spacing:.22em;font-size:.75rem;font-weight:600;text-transform:uppercase}
+h2{font-size:clamp(1.8rem,4vw,2.7rem);margin:8px 0 14px;line-height:1.15}
+.sub{color:var(--mut);max-width:620px}
+.gold{color:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold2),var(--gold) 55%,var(--gold3));color:#080808;font:700 .95rem Montserrat,sans-serif;padding:15px 28px;border-radius:999px;border:0;cursor:pointer;box-shadow:0 10px 30px rgba(214,166,75,.25);transition:.25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(214,166,75,.4)}
+.btn.ghost{background:none;color:var(--gold);border:1px solid var(--gold3);box-shadow:none}
+.btn svg{width:20px;height:20px;fill:currentColor}
+header{position:fixed;inset:0 0 auto;z-index:50;padding-top:env(safe-area-inset-top);background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;flex-direction:column;align-items:center;line-height:1;font-weight:800;letter-spacing:.06em;font-size:1.25rem}
+.logo svg{width:30px;fill:var(--gold);margin-bottom:2px}.logo small{font-size:.55rem;letter-spacing:.42em;color:var(--mut);font-weight:600;margin-top:3px}
+nav ul{display:flex;gap:30px;list-style:none;font-size:.92rem}nav a:hover{color:var(--gold)}
+.burger{display:none;background:none;border:0;color:var(--txt);width:44px;height:44px;cursor:pointer}
+.burger svg{width:28px;stroke:currentColor;fill:none;stroke-width:2}
+.hero{min-height:100svh;display:flex;align-items:center;padding:120px 0 70px;position:relative;background:linear-gradient(90deg,#080808 8%,rgba(8,8,8,.55) 55%,rgba(8,8,8,.2)),var(--himg) center/cover #101010}
+.hero h1{font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.05;font-weight:800;max-width:700px}
+.hero p.lead{font-size:1.2rem;margin:20px 0 28px;max-width:480px;color:#ddd}
+.perks{display:flex;flex-wrap:wrap;gap:12px 28px;margin-bottom:34px;color:var(--mut);font-size:.9rem}
+.perks span:before{content:"";display:inline-block;width:6px;height:6px;background:var(--gold);transform:rotate(45deg);margin-right:10px;vertical-align:middle}
+.grid{display:grid;gap:22px;margin-top:44px}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;transition:.3s}
+.card:hover{border-color:var(--gold3);transform:translateY(-4px)}
+.card .img{aspect-ratio:4/3;background:var(--surf) center/cover}
+.card .body{padding:24px}.card h3{font-size:1.2rem;margin-bottom:6px}.card p{color:var(--mut);font-size:.93rem;margin-bottom:16px}
+.price{color:var(--gold2);font:700 .9rem Montserrat;display:block;margin-bottom:16px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.about .photo{aspect-ratio:4/5;border-radius:var(--r);background:var(--surf) center/cover;border:1px solid var(--gold3)}
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
+.gal div{aspect-ratio:1;border-radius:12px;background:var(--surf) center/cover;transition:.3s}.gal div:hover{transform:scale(1.03)}
+.gal div:nth-child(1),.gal div:nth-child(6){grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.adv{padding:28px}.adv b{display:block;font:700 1.05rem Montserrat;margin:10px 0 4px}.adv span{color:var(--mut);font-size:.92rem}
+.adv i{font-style:normal;color:var(--gold);font-size:1.6rem}
+.zones{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.zones span{border:1px solid var(--bd);background:var(--card);padding:10px 20px;border-radius:999px}
+.cta{text-align:center;background:radial-gradient(circle at 50% 0,rgba(214,166,75,.18),transparent 60%),var(--bg2);border-block:1px solid var(--bd)}
+.cta .sub{margin:0 auto 30px}
+footer{padding:44px 0 110px;color:var(--mut);font-size:.88rem;text-align:center}footer .logo{margin:0 auto 14px}
+.sticky{display:none}
+@media(max-width:860px){
+section{padding:60px 0}.g3,.about{grid-template-columns:1fr}.g4{grid-template-columns:1fr 1fr}.about{gap:30px}
+.gal{grid-template-columns:1fr 1fr}.gal div:nth-child(1),.gal div:nth-child(6){grid-column:span 2;grid-row:auto;aspect-ratio:16/10}
+.burger{display:block}.hide-m{display:none}
+nav{position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--bd);display:none}nav.open{display:block}
+nav ul{flex-direction:column;gap:0;padding:8px 22px}nav li a{display:block;padding:16px 0;border-bottom:1px solid var(--bd)}
+.hero{background:linear-gradient(180deg,rgba(8,8,8,.55),#080808 88%),var(--himg) center top/cover #101010;align-items:flex-end}
+.hero .btn{width:100%;justify-content:center}
+.sticky{display:flex;position:fixed;left:14px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60;justify-content:center;padding:17px}
+}
+.rv{opacity:0}.rv.in{opacity:1;animation:up .9s var(--d,0s) backwards cubic-bezier(.2,.7,.2,1)}
+@keyframes up{from{opacity:0;transform:translateY(36px)}}
+.gold{background:linear-gradient(90deg,var(--gold3),var(--gold2),var(--gold),var(--gold2),var(--gold3));background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 6s linear infinite}
+@keyframes sh{to{background-position:-250% 0}}
+.btn{position:relative;overflow:hidden}.btn:after{content:"";position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);animation:bs 4.5s infinite}
+@keyframes bs{60%,100%{left:140%}}
+.hero .wrap>*{animation:up 1.2s backwards cubic-bezier(.2,.7,.2,1)}.hero .wrap>:nth-child(2){animation-delay:.15s}.hero .wrap>:nth-child(3){animation-delay:.3s}.hero .wrap>:nth-child(4){animation-delay:.45s}.hero .wrap>:nth-child(5){animation-delay:.6s}
+#bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold3),var(--gold2));z-index:99;width:0}
+.nav{transition:height .3s}header.sm .nav{height:58px}header.sm{background:color-mix(in srgb,var(--bg) 94%,transparent)}
+.card .img{transition:transform .9s}.card:hover .img{transform:scale(1.07)}.card:hover{box-shadow:0 20px 50px rgba(214,166,75,.12)}
+.adv i{display:grid;place-items:center;width:52px;height:52px;border:1px solid var(--gold3);border-radius:50%;margin-bottom:6px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1}}
+.logoimg{height:var(--lh,92px);width:auto;display:block;transition:height .3s}.logoimg.f{height:130px;margin:0 auto}.nav{height:104px}header.sm .nav{height:76px}header.sm .logoimg{height:66px}@media(max-width:860px){.nav{height:84px}.logoimg{height:var(--lhm,72px)}header.sm .nav{height:68px}header.sm .logoimg{height:58px}.logoimg.f{height:104px}}
+.btns,.hdb{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.soc{width:46px;height:46px;border:1px solid var(--gold3);border-radius:50%;display:grid;place-items:center;color:var(--gold);transition:.3s}.soc:hover{background:var(--gold);color:var(--bg)}.soc svg{width:20px;height:20px}
+.socials{display:flex;gap:12px;justify-content:center;margin:18px 0}.socials:empty{display:none}
+.floatw{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:60;display:flex;flex-direction:column;gap:10px;align-items:flex-end}.floatw:empty{display:none}
+.bsq .btn{border-radius:6px}.bol .btn:not(.ghost){background:none;color:var(--gold);border:1px solid var(--gold);box-shadow:none}
+.hc .hero .wrap{text-align:center}.hc .perks,.hc .hero .btns{justify-content:center}.hc .hero h1,.hc .hero p.lead{margin-inline:auto}
+.noan *,.noan *:after{animation:none!important;transition:none!important}.noan .rv{opacity:1}
+@media(max-width:860px){.hdb{display:none}.floatw{left:14px;right:14px;flex-direction:row}.floatw .btn{flex:1;justify-content:center;padding:16px 10px}}
+.adv .ic{display:grid;place-items:center;width:54px;height:54px;border:1px solid var(--gold3);border-radius:50%;margin-bottom:8px;color:var(--gold)}.adv .ic svg{width:24px;height:24px}
+</style>
+</head>
+<body>
+<div id="bar"></div><header><div class="wrap nav">
+<a href="#top" class="logo"><img class="logoimg" src="assets/logo.svg" alt="Yose Barber"></a>
+<nav id="nav"><ul><li><a href="#servicos">Serviços</a></li><li><a href="#sobre">Sobre o Yose</a></li><li><a href="#galeria">Galeria</a></li><li><a href="#regioes">Regiões</a></li></ul></nav>
+<div class="hdb" id="hdBtns"></div>
+<button class="burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+</div></header>
+
+<main id="top">
+<section class="hero" data-sec="hero"><div class="wrap">
+<p class="eyebrow" data-t="heroKicker">Barbearia premium a domicílio</p>
+<h1><span data-t="h1a">BARBEIRO</span><br><span data-t="h1b">A DOMICÍLIO</span><br><span class="gold" data-t="h1c">EM CURITIBA</span></h1>
+<p class="lead" data-t="heroLead">Conforto, qualidade e estilo sem sair de casa.</p>
+<div class="perks"><span data-t="perk1">Atendimento no seu endereço</span><span data-t="perk2">Profissional experiente</span><span data-t="perk3">Pontualidade e compromisso</span></div>
+<div class="btns" id="heroBtns"></div>
+</div></section>
+
+<section id="servicos" data-sec="servicos"><div class="wrap">
+<p class="eyebrow" data-t="servEyebrow">Nossos Serviços</p><h2><span data-t="servA">Cuidado de alto nível,</span> <span class="gold" data-t="servB">onde você estiver</span></h2>
+<p class="sub" data-t="servSub">Seu estilo, no conforto da sua casa.</p>
+<div class="grid g3" id="services"></div>
+</div></section>
+
+<section id="sobre" class="alt" data-sec="sobre"><div class="wrap about">
+<div class="photo" style="background-image:url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=80')"></div>
+<div><p class="eyebrow" data-t="sobreEyebrow">Sobre o Yose</p><h2><span data-t="sobreA">Exclusividade e atenção</span> <span class="gold" data-t="sobreB">personalizada</span></h2>
+<p class="sub" data-t="sobreTexto" style="margin-bottom:26px">Barbearia profissional onde você estiver. Cada atendimento é pensado para quem valoriza tempo, discrição e acabamento impecável, com pontualidade e total conforto.</p>
+<div class="btns" id="sobreBtns"></div></div>
+</div></section>
+
+<section id="galeria" data-sec="galeria"><div class="wrap">
+<p class="eyebrow" data-t="galEyebrow">Galeria</p><h2><span data-t="galA">Cortes e</span> <span class="gold" data-t="galB">acabamentos</span></h2>
+<div class="gal" id="gallery"></div>
+</div></section>
+
+<section id="porque" class="alt" data-sec="porque"><div class="wrap">
+<p class="eyebrow" data-t="porqEyebrow">Por que escolher</p><h2><span data-t="porqA">A experiência que o seu tempo</span> <span class="gold" data-t="porqB">merece</span></h2>
+<div class="grid g3" id="why"></div></div></section>
+
+<section id="reviews" data-sec="reviews"><div class="wrap">
+<p class="eyebrow" data-t="revEyebrow">Avaliações</p><h2><span data-t="revA">O que dizem os</span> <span class="gold" data-t="revB">clientes</span></h2>
+<div class="grid g3" id="reviewList"></div></div></section>
+
+<section id="regioes" data-sec="regioes"><div class="wrap">
+<p class="eyebrow" data-t="regEyebrow">Zonas de atendimento</p><h2><span data-t="regA">Atendemos em</span> <span class="gold" data-t="regB">Curitiba e região</span></h2>
+<div class="zones" id="zones"></div>
+</div></section>
+
+<section class="cta" data-sec="cta"><div class="wrap">
+<h2><span data-t="ctaA">Pronto para o seu</span> <span class="gold" data-t="ctaB">próximo corte?</span></h2>
+<p class="sub" data-t="ctaSub">Envie uma mensagem e consulte a disponibilidade de horários.</p>
+<div class="btns" id="ctaBtns"></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<div class="logo"><img class="logoimg f" src="assets/logo.svg" alt="Yose Barber"></div>
+<div data-t="footTag"></div><div data-t="footLoc"></div><div id="socials" class="socials"></div>© <span id="yr"></span> Yose Barber
+</div></footer>
+
+<div class="floatw" id="floatBtns"></div>
+
+<script src="firebase-config.js"></script><script src="defaults.js"></script>
+<script>
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+const E=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const safe=s=>/^\s*javascript:/i.test(s||"")?"#":E(s||"#");
+const merge=(a,b)=>{for(const k in b)a[k]=b[k]&&typeof b[k]==="object"&&!Array.isArray(b[k])?merge(a[k]||{},b[k]):b[k];return a};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.1});
+const wl=(C,t)=>`https://wa.me/${C.whatsapp}?text=${encodeURIComponent(t||C.msgs.geral)}`;
+const SL={header:"#hdBtns",hero:"#heroBtns",sobre:"#sobreBtns",cta:"#ctaBtns",float:"#floatBtns",footer:"#socials"};
+function render(C){
+const T=C.theme,r=document.documentElement.style,bc=document.body.classList;
+for(const k of["gold","gold2","bg","card","txt","mut"])r.setProperty("--"+k,T[k]);
+r.setProperty("--r",T.radius+"px");r.setProperty("--w",T.w+"px");r.setProperty("--sp",T.sp+"px");r.setProperty("--fs",T.fs);r.setProperty("--lh",T.logoH+"px");r.setProperty("--lhm",Math.round(T.logoH*.78)+"px");
+r.setProperty("--himg",`url("${E(T.heroImg)}")`);
+bc.toggle("bsq",T.btnStyle==="square");bc.toggle("bol",T.btnStyle==="outline");bc.toggle("hc",T.align==="center");bc.toggle("noan",T.anim===false);
+$(".about .photo").style.backgroundImage=`url("${E(T.aboutImg)}")`;
+document.body.style.fontFamily=`'${T.bf}',sans-serif`;
+$$("h1,h2,h3,.logo,.btn,.price,.adv b").forEach(e=>e.style.fontFamily=`'${T.hf}',sans-serif`);
+$$(".logoimg").forEach(i=>i.src=T.logo||"assets/logo.svg");
+document.title=C.seo.title;$("meta[name=description]").content=C.seo.desc;
+$("#services").innerHTML=C.services.filter(s=>s.on!==false).map(s=>`<article class="card"><div class="img" style="background-image:url('${E(s.img)}')"></div><div class="body"><h3>${E(s.name)}</h3><p>${E(s.desc)}</p><span class="price">${E(s.price)||"Consulte os valores"}</span><a class="btn" href="${wl(C,C.msgs[s.msg])}" target="_blank" rel="noopener">${ico("wa")}Agendar →</a></div></article>`).join("");
+$("#why").innerHTML=C.why.map(w=>`<div class="card adv"><span class="ic"><i data-lucide="${E(w.ic)}"></i></span><b>${E(w.t)}</b><span>${E(w.d)}</span></div>`).join("");
+$("#gallery").innerHTML=C.gallery.map(g=>`<div style="background-image:url('${E(g)}')"></div>`).join("");
+$("#zones").innerHTML=C.zones.map(z=>`<span>${E(z)}</span>`).join("");
+$("#reviewList").innerHTML=C.reviews.map(x=>`<div class="card adv"><span>“${E(x.text)}”</span><b>${E(x.name)}</b></div>`).join("");
+$$("[data-t]").forEach(e=>{if(C.texts[e.dataset.t]!=null)e.textContent=C.texts[e.dataset.t]});
+for(const s in SL)$(SL[s]).innerHTML=C.buttons.filter(b=>b.on!==false&&b.slot===s).map(b=>{const h=b.kind==="wa"?wl(C,b.text):safe(b.url);return s==="footer"?`<a class="soc" href="${h}" target="_blank" rel="noopener" title="${E(b.label)}" aria-label="${E(b.label)}">${ico(b.icon)}</a>`:`<a class="btn ${b.style==="ghost"?"ghost":""}" href="${h}" target="_blank" rel="noopener">${ico(b.icon)}${E(b.label)}</a>`}).join("");
+window.lucide&&lucide.createIcons();const m=$("#top");C.order.forEach(id=>{const s=m.querySelector(`[data-sec=${id}]`);if(!s)return;m.appendChild(s);s.style.display=C.hidden.includes(id)||(id==="reviews"&&!C.reviews.length)?"none":""});
+$$("section h2,section .eyebrow,.card,.gal div,.zones span,.about .photo").forEach((e,i)=>{if(!e.classList.contains("rv")){e.classList.add("rv");e.style.setProperty("--d",(i%4)*.09+"s");io.observe(e)}});
+}
+render(structuredClone(D));
+addEventListener("message",e=>{if(e.data&&e.data.type==="cfg")render(merge(structuredClone(D),e.data.cfg))});
+(async()=>{if(!FIREBASE_CONFIG.apiKey){try{const l=localStorage.getItem("yose:config");if(l)render(merge(structuredClone(D),JSON.parse(l)))}catch{}return}
+const{initializeApp}=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
+const{getFirestore,doc,getDoc}=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+const s=await getDoc(doc(getFirestore(initializeApp(FIREBASE_CONFIG)),"site","config"));
+if(s.exists())render(merge(structuredClone(D),s.data()))})().catch(()=>{});
+$("#yr").textContent=new Date().getFullYear();
+$("#burger").onclick=()=>$("#nav").classList.toggle("open");
+$$("nav a").forEach(a=>a.onclick=()=>$("#nav").classList.remove("open"));
+addEventListener("scroll",()=>{const h=document.documentElement;$("#bar").style.width=scrollY/(h.scrollHeight-innerHeight)*100+"%";$("header").classList.toggle("sm",scrollY>40);if(innerWidth>860)$(".hero").style.backgroundPositionY=`calc(50% + ${scrollY*.22}px)`},{passive:true});
+</script>
+</body>
+</html>
