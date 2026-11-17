@@ -12,7 +12,7 @@ const B=(kind,label,icon,slot,style,extra={})=>({kind,label,icon,slot,style,text
 const D={
 whatsapp:"554199658208",phoneLabel:"+55 41 9965-8208",
 msgs:{geral:"Olá, Yose! Gostaria de agendar um horário para atendimento a domicílio. Poderia me informar a disponibilidade?",corte:"Olá, Yose! Tenho interesse em agendar um Corte Masculino. Quais horários estão disponíveis?",barba:"Olá, Yose! Gostaria de agendar um serviço de barba. Quais horários estão disponíveis?",combo:"Olá, Yose! Gostaria de agendar Corte + Barba. Quais horários estão disponíveis?"},
-theme:{...PRESETS.ouro.t,radius:16,fs:1,w:1180,sp:84,logoH:92,btnStyle:"pill",align:"left",anim:true,logo:"assets/logo.svg",heroImg:"https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1600&q=75",aboutImg:u("photo-1585747860715-2ba37e788b70")},
+theme:{...PRESETS.ouro.t,radius:16,fs:1,w:1180,sp:84,logoH:92,btnStyle:"pill",align:"left",anim:true,logo:"logo.svg",heroImg:"https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1600&q=75",aboutImg:u("photo-1585747860715-2ba37e788b70")},
 seo:{title:"Yose Barber | Barbeiro a domicílio em Curitiba",desc:"Barbearia profissional a domicílio em Curitiba. Seu estilo, no conforto da sua casa."},
 texts:{heroKicker:"Barbearia premium a domicílio",h1a:"BARBEIRO",h1b:"A DOMICÍLIO",h1c:"EM CURITIBA",heroLead:"Conforto, qualidade e estilo sem sair de casa.",perk1:"Atendimento no seu endereço",perk2:"Profissional experiente",perk3:"Pontualidade e compromisso",
 servEyebrow:"Nossos Serviços",servA:"Cuidado de alto nível,",servB:"onde você estiver",servSub:"Seu estilo, no conforto da sua casa.",

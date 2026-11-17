@@ -18,15 +18,35 @@ label{display:block;margin:10px 0 0;color:#9a9a9a;font-size:12px}input[type=colo
 #pvbox{display:flex;flex-direction:column;min-width:0}.bar{display:flex;gap:8px;padding:10px;border-bottom:1px solid var(--b);flex-wrap:wrap}#pv{flex:1;border:0;background:#222;margin:0 auto;width:100%;transition:width .3s}#cl,#pvb{display:none}
 @media(max-width:900px){#app{display:block;height:100vh}#ed{height:100vh;border:0}#pvbox{position:fixed;inset:0;z-index:9;background:#0b0b0b;display:none}#pvbox.show{display:flex}#cl,#pvb{display:block}.cols{grid-template-columns:1fr 1fr}}
 body{font-family:Inter,system-ui,sans-serif}svg.lucide{width:18px;height:18px;flex:none}button,.up,.chips button,#tabs button{display:inline-flex;align-items:center;justify-content:center;gap:7px}.top b{display:flex;align-items:center;gap:8px}.mv button{padding:8px 10px}.mv svg{width:16px;height:16px}.hd svg:not(.lucide){width:16px}.w{display:flex;gap:8px;align-items:center}
+#app.off{display:none!important}
+#login{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 50% 0,rgba(214,166,75,.16),transparent 55%),#0b0b0b}
+.lc{width:100%;max-width:400px;background:#121212;border:1px solid #2a2a2a;border-radius:20px;padding:36px 30px 30px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lc img{display:block;height:110px;width:auto;margin:0 auto 6px}
+.lc h1{margin:10px 0 4px;text-align:center;font-size:19px;font-weight:700;letter-spacing:.02em}
+.lc p.s{margin:0 0 20px;text-align:center;color:#8a8a8a;font-size:13px}
+.lc form{display:block}.lc .f{position:relative}.lc .f svg{position:absolute;left:13px;top:50%;margin-top:-9px;color:#777;pointer-events:none}
+.lc input{padding-left:42px;height:48px}.lc input:focus{outline:0;border-color:var(--g);box-shadow:0 0 0 3px rgba(214,166,75,.18)}
+.lc .eye{position:absolute;right:6px;top:50%;margin-top:-18px;width:36px;height:36px;padding:0;background:none;border:0;color:#888}
+.lc .go{width:100%;height:50px;margin-top:18px;background:linear-gradient(135deg,#F1C875,#D6A64B 55%,#A87929);color:#0b0b0b;font-weight:700;border:0;border-radius:12px;font-size:15px}
+.lc .go:disabled{opacity:.6;cursor:wait}
+.lc .lk{display:block;margin:16px auto 0;background:none;border:0;color:var(--g);font-size:13px;padding:6px;width:auto}
+#le{min-height:20px;margin-top:12px;text-align:center;font-size:13px;color:#ff8a8a}#le.ok{color:#7fd39b}
+.lc .ft{margin-top:18px;text-align:center;color:#555;font-size:11px}
+#lo{padding:8px 10px;flex:none}
 </style></head><body>
-<div id="app"><div id="ed"><div class="top"><b><i data-lucide="crown"></i>YOSE · Painel</b><span id="msg"></span><span id="sz"></span></div><nav id="tabs"></nav><div id="f"></div>
+<div id="login"><div class="lc"><img src="logo.svg" alt="Yose Barber"><h1>Painel administrativo</h1><p class="s">Acesso restrito. Entre com sua conta.</p>
+<form id="lf" autocomplete="on"><label>E-mail<div class="f"><i data-lucide="mail"></i><input id="le1" type="email" name="email" autocomplete="username" required placeholder="voce@email.com"></div></label>
+<label>Senha<div class="f"><i data-lucide="lock"></i><input id="lp" type="password" name="password" autocomplete="current-password" required placeholder="Sua senha"><button type="button" class="eye" id="ey" aria-label="Mostrar senha"><i data-lucide="eye"></i></button></div></label>
+<button class="go" id="lg" type="submit">Entrar</button><div id="le" role="alert"></div><button type="button" class="lk" id="fp">Esqueci minha senha</button></form><div class="ft">Yose Barber &middot; Área protegida</div></div></div>
+<div id="app" class="off"><div id="ed"><div class="top"><b><i data-lucide="crown"></i>YOSE · Painel</b><span id="msg"></span><span id="sz"></span><button id="lo" title="Sair" aria-label="Sair"><i data-lucide="log-out"></i></button></div><nav id="tabs"></nav><div id="f"></div>
 <div class="act"><button id="pvb"><i data-lucide="eye"></i>Prévia</button><button id="sv"><i data-lucide="save"></i>Salvar alterações</button><button id="pb" class="g"><i data-lucide="cloud-upload"></i>Publicar alterações</button></div></div>
 <div id="pvbox"><div class="bar"><button data-w="100%"><i data-lucide="monitor"></i>PC</button><button data-w="768px"><i data-lucide="tablet"></i>Tablet</button><button data-w="390px"><i data-lucide="smartphone"></i>Celular</button><button id="rs"><i data-lucide="undo-2"></i>Restaurar versão anterior</button><button id="cl"><i data-lucide="x"></i>Fechar</button></div><iframe id="pv" src="index.html"></iframe></div></div>
 <script type="module">
 const BU="https://www.gstatic.com/firebasejs/10.12.2/";
 const $=s=>document.querySelector(s),ok=!!FIREBASE_CONFIG.apiKey;
 const[A,Fs]=ok?await Promise.all([import(BU+"firebase-app.js"),import(BU+"firebase-firestore.js")]):[{},{}];
-const{initializeApp}=A,{getFirestore,doc,getDoc,setDoc}=Fs;const db=ok?getFirestore(initializeApp(FIREBASE_CONFIG)):null;
+const{initializeApp}=A,{getFirestore,doc,getDoc,setDoc}=Fs;const app=ok?initializeApp(FIREBASE_CONFIG):null,db=ok?getFirestore(app):null;
+const{getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut,sendPasswordResetEmail}=ok?await import(BU+"firebase-auth.js"):{};const auth=ok?getAuth(app):null;
 const merge=(a,b)=>{for(const k in b)a[k]=b[k]&&typeof b[k]==="object"&&!Array.isArray(b[k])?merge(a[k]||{},b[k]):b[k];return a};
 const e=v=>String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
 const toast=t=>{$("#msg").textContent=t;setTimeout(()=>$("#msg").textContent="",3500)};
@@ -91,5 +111,19 @@ try{await setDoc(doc(db,"site",k),JSON.parse(JSON.stringify(S)));toast(k==="conf
 $("#sv").onclick=()=>save("draft");$("#pb").onclick=()=>confirm("Publicar no site?")&&save("config");
 const load=async ks=>{S=structuredClone(D);for(const k of ks){const d=ok?(await getDoc(doc(db,"site",k))).data():JSON.parse(localStorage.getItem("yose:"+k)||"null");if(d){merge(S,d);break}}ui();push()};
 $("#rs").onclick=()=>load(["config"]).then(()=>toast("Versão publicada restaurada"));
-ui();load(["draft","config"]);
+const err=(t,g)=>{$("#le").textContent=t||"";$("#le").className=g?"ok":""};
+const MS={"auth/invalid-credential":"E-mail ou senha incorretos.","auth/wrong-password":"E-mail ou senha incorretos.","auth/user-not-found":"E-mail ou senha incorretos.","auth/invalid-email":"E-mail inválido.","auth/too-many-requests":"Muitas tentativas. Aguarde alguns minutos e tente de novo.","auth/network-request-failed":"Sem conexão. Verifique sua internet.","auth/user-disabled":"Esta conta foi desativada."};
+const show=v=>{$("#login").style.display=v?"none":"grid";$("#app").classList.toggle("off",!v)};
+async function enter(){show(true);ui();try{await load(["draft","config"])}catch(x){if(x.code==="permission-denied"){await signOut(auth);err("Esta conta não tem permissão de administrador.")}else toast("Erro ao carregar")}}
+if(!ok){show(true);ui();load(["draft","config"])}
+else{
+$("#lf").onsubmit=async x=>{x.preventDefault();err("");const b=$("#lg");b.disabled=true;b.textContent="Entrando...";
+try{await signInWithEmailAndPassword(auth,$("#le1").value.trim(),$("#lp").value)}catch(z){err(MS[z.code]||"Não foi possível entrar. Tente novamente.")}b.disabled=false;b.textContent="Entrar"};
+$("#ey").onclick=()=>{const p=$("#lp"),h=p.type==="password";p.type=h?"text":"password"};
+$("#fp").onclick=async()=>{const m=$("#le1").value.trim();if(!m){err("Digite seu e-mail acima e clique novamente.");return}
+try{await sendPasswordResetEmail(auth,m)}catch{}err("Se o e-mail estiver cadastrado, enviamos um link para redefinir a senha.",1)};
+$("#lo").onclick=()=>confirm("Sair do painel?")&&signOut(auth);
+onAuthStateChanged(auth,u=>{if(u)enter();else{show(false);$("#lp").value=""}});
+}
+lucide.createIcons();
 </script></body></html>
