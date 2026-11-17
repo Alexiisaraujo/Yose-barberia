@@ -1,4 +1,4 @@
 @echo off
-cd /d "%~dp0public"
-echo Sitio: http://localhost:8000   Admin: http://localhost:8000/admin/
+cd /d "%~dp0"
+echo Sitio: http://localhost:8000   Admin: http://localhost:8000/admin.html
 python -m http.server 8000

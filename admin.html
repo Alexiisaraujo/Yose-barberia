@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Admin · Yose Barber</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script><script src="../firebase-config.js"></script><script src="../defaults.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script><script src="firebase-config.js"></script><script src="defaults.js"></script>
 <style>
 :root{--g:#D6A64B;--c:#161616;--b:#2a2a2a}*{box-sizing:border-box}body{margin:0;background:#0b0b0b;color:#f2f2f2;font:15px system-ui,sans-serif}
 input,select,textarea,button{font:inherit;color:#f2f2f2;background:#222;border:1px solid var(--b);border-radius:10px;padding:11px;width:100%}button{cursor:pointer;width:auto}button.g,.up{background:var(--g);color:#0b0b0b;font-weight:700;border:0}
@@ -21,7 +21,7 @@ body{font-family:Inter,system-ui,sans-serif}svg.lucide{width:18px;height:18px;fl
 </style></head><body>
 <div id="app"><div id="ed"><div class="top"><b><i data-lucide="crown"></i>YOSE · Painel</b><span id="msg"></span><span id="sz"></span></div><nav id="tabs"></nav><div id="f"></div>
 <div class="act"><button id="pvb"><i data-lucide="eye"></i>Prévia</button><button id="sv"><i data-lucide="save"></i>Salvar alterações</button><button id="pb" class="g"><i data-lucide="cloud-upload"></i>Publicar alterações</button></div></div>
-<div id="pvbox"><div class="bar"><button data-w="100%"><i data-lucide="monitor"></i>PC</button><button data-w="768px"><i data-lucide="tablet"></i>Tablet</button><button data-w="390px"><i data-lucide="smartphone"></i>Celular</button><button id="rs"><i data-lucide="undo-2"></i>Restaurar versão anterior</button><button id="cl"><i data-lucide="x"></i>Fechar</button></div><iframe id="pv" src="../index.html"></iframe></div></div>
+<div id="pvbox"><div class="bar"><button data-w="100%"><i data-lucide="monitor"></i>PC</button><button data-w="768px"><i data-lucide="tablet"></i>Tablet</button><button data-w="390px"><i data-lucide="smartphone"></i>Celular</button><button id="rs"><i data-lucide="undo-2"></i>Restaurar versão anterior</button><button id="cl"><i data-lucide="x"></i>Fechar</button></div><iframe id="pv" src="index.html"></iframe></div></div>
 <script type="module">
 const BU="https://www.gstatic.com/firebasejs/10.12.2/";
 const $=s=>document.querySelector(s),ok=!!FIREBASE_CONFIG.apiKey;

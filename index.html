@@ -90,7 +90,7 @@ nav ul{flex-direction:column;gap:0;padding:8px 22px}nav li a{display:block;paddi
 </head>
 <body>
 <div id="bar"></div><header><div class="wrap nav">
-<a href="#top" class="logo"><img class="logoimg" src="assets/logo.svg" alt="Yose Barber"></a>
+<a href="#top" class="logo"><img class="logoimg" src="logo.svg" alt="Yose Barber"></a>
 <nav id="nav"><ul><li><a href="#servicos">Serviços</a></li><li><a href="#sobre">Sobre o Yose</a></li><li><a href="#galeria">Galeria</a></li><li><a href="#regioes">Regiões</a></li></ul></nav>
 <div class="hdb" id="hdBtns"></div>
 <button class="burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
@@ -144,7 +144,7 @@ nav ul{flex-direction:column;gap:0;padding:8px 22px}nav li a{display:block;paddi
 </main>
 
 <footer><div class="wrap">
-<div class="logo"><img class="logoimg f" src="assets/logo.svg" alt="Yose Barber"></div>
+<div class="logo"><img class="logoimg f" src="logo.svg" alt="Yose Barber"></div>
 <div data-t="footTag"></div><div data-t="footLoc"></div><div id="socials" class="socials"></div>© <span id="yr"></span> Yose Barber
 </div></footer>
 
@@ -168,7 +168,7 @@ bc.toggle("bsq",T.btnStyle==="square");bc.toggle("bol",T.btnStyle==="outline");b
 $(".about .photo").style.backgroundImage=`url("${E(T.aboutImg)}")`;
 document.body.style.fontFamily=`'${T.bf}',sans-serif`;
 $$("h1,h2,h3,.logo,.btn,.price,.adv b").forEach(e=>e.style.fontFamily=`'${T.hf}',sans-serif`);
-$$(".logoimg").forEach(i=>i.src=T.logo||"assets/logo.svg");
+$$(".logoimg").forEach(i=>i.src=T.logo||"logo.svg");
 document.title=C.seo.title;$("meta[name=description]").content=C.seo.desc;
 $("#services").innerHTML=C.services.filter(s=>s.on!==false).map(s=>`<article class="card"><div class="img" style="background-image:url('${E(s.img)}')"></div><div class="body"><h3>${E(s.name)}</h3><p>${E(s.desc)}</p><span class="price">${E(s.price)||"Consulte os valores"}</span><a class="btn" href="${wl(C,C.msgs[s.msg])}" target="_blank" rel="noopener">${ico("wa")}Agendar →</a></div></article>`).join("");
 $("#why").innerHTML=C.why.map(w=>`<div class="card adv"><span class="ic"><i data-lucide="${E(w.ic)}"></i></span><b>${E(w.t)}</b><span>${E(w.d)}</span></div>`).join("");
