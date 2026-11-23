@@ -86,12 +86,20 @@ nav ul{flex-direction:column;gap:0;padding:8px 22px}nav li a{display:block;paddi
 .noan *,.noan *:after{animation:none!important;transition:none!important}.noan .rv{opacity:1}
 @media(max-width:860px){.hdb{display:none}.floatw{left:14px;right:14px;flex-direction:row}.floatw .btn{flex:1;justify-content:center;padding:16px 10px}}
 .adv .ic{display:grid;place-items:center;width:54px;height:54px;border:1px solid var(--gold3);border-radius:50%;margin-bottom:8px;color:var(--gold)}.adv .ic svg{width:24px;height:24px}
+/* Produtos recomendados */
+.amz-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.amz-card{display:flex;flex-direction:column}.amz-card .body{display:flex;flex-direction:column;flex:1}.amz-card .body p{flex:1}
+.pimg{aspect-ratio:1;background:var(--surf);display:grid;place-items:center;overflow:hidden}.pimg img{width:100%;height:100%;object-fit:cover;transition:transform .9s}.amz-card:hover .pimg img{transform:scale(1.07)}
+.pimg svg{width:44px;height:44px;stroke:var(--gold3);fill:none;stroke-width:1.5}
+.tagc{display:block;color:var(--gold);font:600 .68rem Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}
+.amz-card .btn{justify-content:center;width:100%;padding:14px 18px;font-size:.85rem;letter-spacing:.04em}
+.amz-note{color:var(--mut);font-size:.8rem;margin-top:30px;max-width:720px}.amz-note:empty{display:none}
 </style>
 </head>
 <body>
 <div id="bar"></div><header><div class="wrap nav">
 <a href="#top" class="logo"><img class="logoimg" src="logo.svg" alt="Yose Barber"></a>
-<nav id="nav"><ul><li><a href="#servicos">Serviços</a></li><li><a href="#sobre">Sobre o Yose</a></li><li><a href="#galeria">Galeria</a></li><li><a href="#regioes">Regiões</a></li></ul></nav>
+<nav id="nav"><ul><li><a href="#servicos">Serviços</a></li><li><a href="#sobre">Sobre o Yose</a></li><li><a href="#galeria">Galeria</a></li><li><a href="#regioes">Regiões</a></li><li id="navAmz" style="display:none"><a href="#produtos">Produtos</a></li></ul></nav>
 <div class="hdb" id="hdBtns"></div>
 <button class="burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
 </div></header>
@@ -136,6 +144,13 @@ nav ul{flex-direction:column;gap:0;padding:8px 22px}nav li a{display:block;paddi
 <div class="zones" id="zones"></div>
 </div></section>
 
+<section id="produtos" data-sec="amazon" style="display:none"><div class="wrap">
+<p class="eyebrow" id="amzEy"></p><h2><span id="amzA"></span> <span class="gold" id="amzB"></span></h2>
+<p class="sub" id="amzSub"></p>
+<div class="grid amz-grid" id="amzList"></div>
+<p class="amz-note" id="amzNote"></p>
+</div></section>
+
 <section class="cta" data-sec="cta"><div class="wrap">
 <h2><span data-t="ctaA">Pronto para o seu</span> <span class="gold" data-t="ctaB">próximo corte?</span></h2>
 <p class="sub" data-t="ctaSub">Envie uma mensagem e consulte a disponibilidade de horários.</p>
@@ -159,6 +174,16 @@ const merge=(a,b)=>{for(const k in b)a[k]=b[k]&&typeof b[k]==="object"&&!Array.i
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.1});
 const wl=(C,t)=>`https://wa.me/${C.whatsapp}?text=${encodeURIComponent(t||C.msgs.geral)}`;
 const SL={header:"#hdBtns",hero:"#heroBtns",sobre:"#sobreBtns",cta:"#ctaBtns",float:"#floatBtns",footer:"#socials"};
+const urlOk=u=>{try{const x=new URL(String(u).trim());return/^https?:$/.test(x.protocol)&&/^[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(x.hostname)&&!/^\d+(\.\d+){3}$/.test(x.hostname)}catch{return false}};
+const TPL={amazon:["Amazon","COMPRAR NA AMAZON →",1],ml:["Mercado Livre","COMPRAR NO MERCADO LIVRE →",1],propria:["Loja própria","COMPRAR AGORA →",0],whatsapp:["WhatsApp","PEDIR PELO WHATSAPP →",0],outro:["","VER PRODUTO →",1]};
+function amzRender(C){
+const A=C.amazon||{},pub=p=>p&&(p.st?p.st==="pub":p.on!==false),ls=A.on===false?[]:(A.items||[]).filter(p=>pub(p)&&String(p.name||"").trim()&&urlOk(p.url));
+$("#amzEy").textContent=A.eyebrow||"";$("#amzA").textContent=A.a||"";$("#amzB").textContent=A.b||"";$("#amzSub").textContent=A.sub||"";
+$("#amzNote").textContent=ls.some(p=>(p.tp||"amazon")==="amazon")?(A.note||""):"";
+$("#amzList").innerHTML=ls.map(p=>{const T=TPL[p.tp||"amazon"]||TPL.outro,im=p.img&&(/^data:image\//i.test(p.img)||urlOk(p.img));
+return`<article class="card amz-card"><div class="pimg">${im?`<img src="${E(p.img)}" alt="${E(p.name)}" loading="lazy" referrerpolicy="no-referrer">`:`<i data-lucide="shopping-bag"></i>`}</div><div class="body">${T[0]?`<span class="tagc">${E(T[0])}</span>`:""}<h3>${E(p.name)}</h3><p>${E(p.desc)}</p>${p.price?`<span class="price">${E(p.price)}</span>`:""}<a class="btn" href="${E(p.url)}" target="_blank" rel="${T[2]?"noopener noreferrer sponsored nofollow":"noopener noreferrer"}">${T[1]}</a></div></article>`}).join("");
+return ls.length}
+addEventListener("error",ev=>{const t=ev.target;if(t&&t.tagName==="IMG"&&t.closest&&t.closest(".pimg")){t.parentNode.innerHTML='<i data-lucide="shopping-bag"></i>';window.lucide&&lucide.createIcons()}},true);
 function render(C){
 const T=C.theme,r=document.documentElement.style,bc=document.body.classList;
 for(const k of["gold","gold2","bg","card","txt","mut"])r.setProperty("--"+k,T[k]);
@@ -176,8 +201,9 @@ $("#gallery").innerHTML=C.gallery.map(g=>`<div style="background-image:url('${E(
 $("#zones").innerHTML=C.zones.map(z=>`<span>${E(z)}</span>`).join("");
 $("#reviewList").innerHTML=C.reviews.map(x=>`<div class="card adv"><span>“${E(x.text)}”</span><b>${E(x.name)}</b></div>`).join("");
 $$("[data-t]").forEach(e=>{if(C.texts[e.dataset.t]!=null)e.textContent=C.texts[e.dataset.t]});
+const amzN=amzRender(C);if(!C.order.includes("amazon")){const k=C.order.indexOf("cta");C.order.splice(k<0?C.order.length:k,0,"amazon")}const nl=$("#navAmz");if(nl)nl.style.display=amzN&&!C.hidden.includes("amazon")?"":"none";
 for(const s in SL)$(SL[s]).innerHTML=C.buttons.filter(b=>b.on!==false&&b.slot===s).map(b=>{const h=b.kind==="wa"?wl(C,b.text):safe(b.url);return s==="footer"?`<a class="soc" href="${h}" target="_blank" rel="noopener" title="${E(b.label)}" aria-label="${E(b.label)}">${ico(b.icon)}</a>`:`<a class="btn ${b.style==="ghost"?"ghost":""}" href="${h}" target="_blank" rel="noopener">${ico(b.icon)}${E(b.label)}</a>`}).join("");
-window.lucide&&lucide.createIcons();const m=$("#top");C.order.forEach(id=>{const s=m.querySelector(`[data-sec=${id}]`);if(!s)return;m.appendChild(s);s.style.display=C.hidden.includes(id)||(id==="reviews"&&!C.reviews.length)?"none":""});
+window.lucide&&lucide.createIcons();const m=$("#top");C.order.forEach(id=>{const s=m.querySelector(`[data-sec=${id}]`);if(!s)return;m.appendChild(s);s.style.display=C.hidden.includes(id)||(id==="reviews"&&!C.reviews.length)||(id==="amazon"&&!amzN)?"none":""});
 $$("section h2,section .eyebrow,.card,.gal div,.zones span,.about .photo").forEach((e,i)=>{if(!e.classList.contains("rv")){e.classList.add("rv");e.style.setProperty("--d",(i%4)*.09+"s");io.observe(e)}});
 }
 render(structuredClone(D));

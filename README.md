@@ -12,3 +12,6 @@ Vaciar `FIREBASE_CONFIG` en `firebase-config.js` (apiKey ""), ejecutar `iniciar-
 
 ## Notas
 Panel: /admin. Fotos subidas desde el celular se guardan en el documento de Firestore (limite 1 MB; el panel avisa). Verifique el WhatsApp (12 digitos; Brasil usa 13).
+
+## Produtos recomendados
+Painel > aba "Produtos": formulário com nome, foto (URL da imagem, com prévia), descrição, preço opcional, link de compra/afiliado, tipo (Amazon, Mercado Livre, Loja própria, WhatsApp, Outro) e estado (Publicado/Oculto). "SALVAR PRODUTO" grava e publica na hora na seção "Produtos recomendados" (só o bloco `amazon` do documento `site/config`; o resto do site não é publicado junto). Editar, ocultar/publicar, reordenar e eliminar também publicam na hora. A foto e o link de compra são campos separados: o campo da foto recusa links de lojas (Amazon, Mercado Livre, WhatsApp) e testa se a imagem carrega. Os links de compra aceitam qualquer site http(s) e abrem em nova aba com `noopener noreferrer`. As regras do Firestore não mudam.

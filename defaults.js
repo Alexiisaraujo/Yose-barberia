@@ -28,4 +28,5 @@ services:[
 why:[{ic:"house",t:"No seu endereço",d:"Casa, escritório, hotel ou cobertura. Você não perde tempo em deslocamento."},{ic:"crown",t:"Atendimento exclusivo",d:"Um cliente por vez, com atenção total do início ao fim."},{ic:"clock",t:"Pontualidade",d:"Horário combinado é compromisso cumprido."},{ic:"shield-check",t:"Discrição e privacidade",d:"Seu momento, no seu espaço, com total reserva."},{ic:"scissors",t:"Acabamento impecável",d:"Técnica e precisão para uma imagem sempre afiada."},{ic:"sparkles",t:"Higiene e materiais profissionais",d:"Cuidado e organização em cada atendimento."}],
 gallery:["photo-1503951914875-452162b0f3f1","photo-1621605815971-fbc98d665033","photo-1599351431202-1e0f0137899a","photo-1585747860715-2ba37e788b70","photo-1622286342621-4bd786c2447c","photo-1605497788044-5a32c7078486"].map(u),
 reviews:[],zones:["Batel","Água Verde","Bigorrilho","Centro","Ecoville","Portão"],
-order:["hero","servicos","sobre","galeria","porque","reviews","regioes","cta"],hidden:[]};
+order:["hero","servicos","sobre","galeria","porque","reviews","regioes","amazon","cta"],hidden:[],
+amazon:{on:true,eyebrow:"Indicações",a:"Produtos",b:"recomendados",sub:"Seleção de produtos para cuidar do cabelo e da barba.",note:"Como Associado da Amazon, o Yose Barber ganha com compras qualificadas. Preços e disponibilidade podem variar.",items:[]}};
