@@ -1,7 +1,50 @@
-rules_version='2';
-service cloud.firestore{match /databases/{d}/documents{
- function isAdmin(){return request.auth!=null&&exists(/databases/$(d)/documents/admins/$(request.auth.uid));}
- match /site/config{allow read:if true;allow write:if isAdmin();}
- match /site/draft{allow read,write:if isAdmin();}
- match /admins/{id}{allow read,write:if false;}
-}}
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function isAdmin(){return request.auth != null && exists(/databases/$(database)/documents/admins/$(request.auth.uid));}
+  match /site/config { allow read: if true; allow write: if isAdmin(); }
+  match /site/draft { allow read, write: if isAdmin(); }
+  match /admins/{id} { allow read, write: if false; }
+
+  // Visitas: alta pública solo con el conjunto mínimo de datos; lectura solo admin.
+  match /visits/{visitId} {
+   allow create: if request.resource.data.keys().hasOnly(['city','region','country','device','path','referrer','createdAt'])
+    && request.resource.data.city is string && request.resource.data.city.size() <= 80
+    && request.resource.data.region is string && request.resource.data.region.size() <= 80
+    && request.resource.data.country is string && request.resource.data.country.size() <= 80
+    && request.resource.data.device in ['Celular','Computadora','Tablet']
+    && request.resource.data.path is string && request.resource.data.path.size() <= 160
+    && request.resource.data.referrer is string && request.resource.data.referrer.size() <= 120
+    && request.resource.data.createdAt == request.time;
+   allow read: if isAdmin(); allow update, delete: if false;
+  }
+
+  // Reservas: cualquier visitante puede enviar una solicitud, solo el administrador puede verla y gestionarla.
+  match /leads/{leadId} {
+   allow create: if request.resource.data.keys().hasOnly(['name','phone','service','date','time','area','notes','status','source','createdAt'])
+    && request.resource.data.name is string && request.resource.data.name.size() >= 2 && request.resource.data.name.size() <= 90
+    && request.resource.data.phone is string && request.resource.data.phone.size() >= 8 && request.resource.data.phone.size() <= 30
+    && request.resource.data.service is string && request.resource.data.service.size() <= 100
+    && request.resource.data.date is string && request.resource.data.date.size() <= 20
+    && request.resource.data.time is string && request.resource.data.time.size() <= 10
+    && request.resource.data.area is string && request.resource.data.area.size() <= 120
+    && request.resource.data.notes is string && request.resource.data.notes.size() <= 500
+    && request.resource.data.status == 'nuevo' && request.resource.data.source == 'site'
+    && request.resource.data.createdAt == request.time;
+   allow read: if isAdmin();
+   allow update: if isAdmin() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
+    && request.resource.data.status in ['nuevo','contactado','agendado','finalizado','cancelado'];
+   allow delete: if isAdmin();
+  }
+
+  // Eventos de conversión: solo eventos reducidos, sin datos personales.
+  match /conversions/{eventId} {
+   allow create: if request.resource.data.keys().hasOnly(['type','label','path','createdAt'])
+    && request.resource.data.type in ['whatsapp_click','vip']
+    && request.resource.data.label is string && request.resource.data.label.size() <= 100
+    && request.resource.data.path is string && request.resource.data.path.size() <= 160
+    && request.resource.data.createdAt == request.time;
+   allow read: if isAdmin(); allow update, delete: if false;
+  }
+ }
+}

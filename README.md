@@ -1,17 +1,46 @@
-# YOSE BARBER
-Carpeta lista para Git/Vercel (sin build): `index.html` (sitio), `admin.html` (panel con login), `defaults.js`, `firebase-config.js`, `logo.svg`, `firestore.rules`, `vercel.json`.
+# Yose Barber
 
-## Firebase (proyecto yose-barberia)
-1. Authentication > Sign-in method: activar Correo/contrasena. Authentication > Users: crear el/los administradores.
-2. Authentication > Settings > Dominios autorizados: agregar el dominio de Vercel.
-3. Firestore: crear la base de datos. En `firestore.rules` reemplazar `TU_CORREO@gmail.com` por el correo del administrador (varios: separar con coma) y pegar en Firestore > Rules > Publicar.
-4. Recomendado: Authentication > Settings > User actions: desactivar "Enable create (sign-up)" para que nadie pueda registrarse.
+Sitio web y panel administrativo de Yose Barber. Los archivos principales permanecen en la raíz para facilitar el despliegue en GitHub/Vercel.
 
-## Probar en local (sin Firebase)
-Vaciar `FIREBASE_CONFIG` en `firebase-config.js` (apiKey ""), ejecutar `iniciar-local.sh` o `.bat`. El panel funciona sin login y guarda en localStorage. Con Firebase configurado, probar siempre por http://localhost (no abrir el archivo directo).
+## Archivos
 
-## Notas
-Panel: /admin. Fotos subidas desde el celular se guardan en el documento de Firestore (limite 1 MB; el panel avisa). Verifique el WhatsApp (12 digitos; Brasil usa 13).
+- `index.html`, `index.css`, `index.js`: sitio público.
+- `admin.html`, `admin.css`, `admin.js`: panel de administración.
+- `defaults.js`: contenido y configuración inicial (incluye módulos opcionales apagados).
+- `firebase-config.js`: configuración pública del proyecto Firebase.
+- `firestore.rules`: reglas de seguridad para publicar contenido, visitas, reservas y conversiones.
+- `logo.svg`: identidad visual.
 
-## Produtos recomendados
-Painel > aba "Produtos": formulário com nome, foto (URL da imagem, com prévia), descrição, preço opcional, link de compra/afiliado, tipo (Amazon, Mercado Livre, Loja própria, WhatsApp, Outro) e estado (Publicado/Oculto). "SALVAR PRODUTO" grava e publica na hora na seção "Produtos recomendados" (só o bloco `amazon` do documento `site/config`; o resto do site não é publicado junto). Editar, ocultar/publicar, reordenar e eliminar também publicam na hora. A foto e o link de compra são campos separados: o campo da foto recusa links de lojas (Amazon, Mercado Livre, WhatsApp) e testa se a imagem carrega. Os links de compra aceitam qualquer site http(s) e abrem em nova aba com `noopener noreferrer`. As regras do Firestore não mudam.
+## Módulos de crecimiento opcionales
+
+En el panel, pestaña **Crecimiento**, puedes activar o desactivar cada módulo de forma independiente. Todos comienzan desactivados:
+
+1. **Reservas online**: formulario de solicitud de fecha, horario, servicio y ubicación. Las solicitudes se guardan en Firestore.
+2. **Planes VIP**: publica los planes que estén marcados como activos.
+3. **CRM**: permite consultar las solicitudes recibidas y cambiar su estado (nuevo, contactado, agendado, concluido o cancelado).
+4. **Testimonios**: controla la publicación de las reseñas cargadas en Contacto.
+5. **Conversiones**: registra clics de interés en WhatsApp y planes VIP, siempre con consentimiento de analítica.
+6. **Analítica de visitas**: registra fecha, dispositivo, página y ubicación aproximada (ciudad/región/país) después del consentimiento. No se almacena la dirección IP.
+
+Para activar cambios: selecciona los módulos en **Crecimiento**, pulsa **Guardar alterações** y después **Publicar alterações**. La vista previa no sustituye la publicación.
+
+## Configuración obligatoria de Firebase
+
+1. Comprueba que `firebase-config.js` tenga la configuración correcta del proyecto.
+2. En Firebase Authentication, habilita Email/Password y crea el usuario administrador.
+3. En Firestore, crea manualmente `admins/{UID}` para el UID de ese usuario. El documento puede estar vacío. Las reglas impiden crear o consultar estos documentos desde el cliente.
+4. Publica el contenido de `firestore.rules` en Firestore Rules.
+5. Habilita Firestore y verifica que el dominio de producción esté autorizado en Firebase Authentication.
+
+Las nuevas colecciones son `leads` (solicitudes), `conversions` (clics) y `visits` (visitas). Las reglas permiten crear solicitudes y eventos mínimos desde el sitio público, pero solo administradores pueden consultarlos. Solo administradores pueden cambiar el estado de una solicitud.
+
+## Privacidad y operación
+
+- La geolocalización de visitas se estima mediante el proveedor IPAPI y puede no estar disponible o ser imprecisa.
+- El visitante puede aceptar o rechazar la analítica opcional. El rechazo evita tanto el registro de visitas como los eventos de conversión.
+- No solicites datos sensibles en el formulario público.
+- Antes de operar reservas online, revisa las solicitudes y confirma manualmente disponibilidad con el cliente.
+
+## Despliegue
+
+Mantén todos los archivos en la raíz del repositorio. Para Vercel se conserva `vercel.json`, que redirige `/admin` a `admin.html`.
